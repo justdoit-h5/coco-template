@@ -23,9 +23,9 @@ export default {
     CocoComponent,
   },
   mounted() {
-    getCampaignInfo().then(res => {
-      console.log(res);
-    })
+    // getCampaignInfo().then(res => {
+    //   console.log(res);
+    // })
   }
 }
 </script>
