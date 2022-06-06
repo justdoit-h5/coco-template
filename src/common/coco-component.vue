@@ -153,10 +153,13 @@ export default {
         animation: 200
       },
       isEdit,
+      // window.__coco_config__ 会在服务端注入选择的组件
+      // 本地开发时直接使用 this.$slots.default
       components: window.__coco_config__.components.length
         ? window.__coco_config__.components // window.__coco_config__.components 是服务端注入的用户选择组件
         : this.$slots.default.map(c => {
           const name = c.componentOptions.tag;
+          // config 当前项目组件和页面配置
           const { data } =  config.componentConfig.filter(config => config.name === name)[0];
           return {
             name,
@@ -173,6 +176,8 @@ export default {
     };
   },
   created() {
+    console.log('this.$slots.default:',this.$slots.default)
+    console.log('config:',config)
     // 预览
     if (isPreview && baseUrl && pageId) {
       xhrGet(`${baseUrl}/project/preview?id=${pageId}`, (res) => {
